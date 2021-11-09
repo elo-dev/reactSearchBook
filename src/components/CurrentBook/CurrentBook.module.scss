@@ -1,0 +1,33 @@
+.currentBook{
+    display: flex;
+    margin-top: 45px;
+    .image__block{
+        width: 35%;
+        img{
+            box-shadow: 0px 2px 18px -1px rgba(34, 60, 80, 0.31);
+            width: 270px;
+            height: 370px;
+        }
+    }
+    .description{
+        width: 65%;
+        h2{
+            margin: 15px 0 0 0;
+            font-size: 30px;
+            letter-spacing: 1px;
+        }
+        .authors{
+            letter-spacing: .2px;
+            text-decoration: underline;
+        }
+        span{
+            opacity: .5;
+        }
+        .description__block{
+            padding: 10px;
+            font-size: 15px;
+            margin-top: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+    }
+}

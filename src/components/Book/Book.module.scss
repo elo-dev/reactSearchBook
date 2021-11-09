@@ -1,0 +1,21 @@
+.book {
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  .category {
+    color: gray;
+    text-decoration: underline;
+  }
+  .name {
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .author {
+    color: grey;
+  }
+}
