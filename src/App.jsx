@@ -1,46 +1,38 @@
 import React, { useMemo, useState } from 'react'
 import 'antd/dist/antd.css'
 import './App.scss'
-import { API_KEY, getResponse, getSortedBooks, MAX_RESULT, ORDER_BY, ROOT_API, START_INDEX } from './network/api'
-import axios from 'axios'
+import { API_KEY, MAX_RESULT, ORDER_BY, ROOT_API, START_INDEX } from './network/api'
 import { Header } from './components/Header/Header'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Books } from './components/Books/Books'
 import { CurrentBook } from './components/CurrentBook/CurrentBook'
+import { requestBooks, setLoadingAction, requestLoadMore, requestSortedBooks } from './store/booksReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
-  const [books, setBooks] = useState([])
   const [inputValue, setInputValue] = useState('')
   const [categoryValue, setCategory] = useState('')
-  const [countBooks, setCountBooks] = useState(null)
   const [currentPage, setCurrentPage] = useState(30)
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+  const loading = useSelector(state => state.booksReducer.loading)
+  const books = useSelector(state => state.booksReducer.books)
+  const countBooks = useSelector(state => state.booksReducer.countBooks)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     if (inputValue.length) {
-      setLoading(true)
-      const res = getResponse(ROOT_API + inputValue + MAX_RESULT + 30 + START_INDEX + 0 + API_KEY)
-      res.then((data) => {
-        setBooks(data.items)
-        setCountBooks(data.totalItems)
-        setLoading(false)
-        navigate('/')
-      })
+      dispatch(requestBooks(ROOT_API + inputValue + MAX_RESULT + 30 + START_INDEX + 0 + API_KEY))
+      navigate('/')
     }
   }
 
   const sortedBooks = (value) => {
-    setLoading(true)
-    const res = getSortedBooks(ROOT_API + inputValue + MAX_RESULT + 30 + ORDER_BY + value + API_KEY)
-    res.then((sorted) => {
-      setBooks(sorted.items)
-      setCurrentPage(30)
-      setLoading(false)
-      navigate('/')
-    })
+    dispatch(setLoadingAction(true))
+    dispatch(requestSortedBooks(ROOT_API + inputValue + MAX_RESULT + 30 + ORDER_BY + value + API_KEY))
+    navigate('/')
   }
 
   const filtredBooks = useMemo(
@@ -54,14 +46,8 @@ const App = () => {
   )
 
   const loadMore = () => {
-    setLoading(true)
     setCurrentPage(currentPage+30)
-    axios.get(ROOT_API + inputValue + MAX_RESULT + 30 + START_INDEX + currentPage + API_KEY).then(res => {
-      if(res.data.items){
-        setBooks([...books, ...res.data.items])
-        setLoading(false)
-      }
-    })
+    dispatch(requestLoadMore(ROOT_API + inputValue + MAX_RESULT + 30 + START_INDEX + currentPage + API_KEY))
   }
 
   return (

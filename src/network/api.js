@@ -6,8 +6,8 @@ export const ORDER_BY = '&orderBy='
 export const MAX_RESULT = '&maxResults='
 export const START_INDEX = '&startIndex='
 
-export const getResponse = async (search) => {
-  const res = await axios.get(search).then((res) => {
+export const getResponse = (search) => {
+  const res = axios.get(search).then((res) => {
     return res.data
   })
   return res
