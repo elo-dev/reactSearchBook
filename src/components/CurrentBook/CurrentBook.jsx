@@ -1,5 +1,5 @@
-import { Button } from 'antd'
 import React from 'react'
+import { Button } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import style from './CurrentBook.module.scss'
 
@@ -16,7 +16,7 @@ export const CurrentBook = ({ books }) => {
 
   return (
     <>
-      <Button onClick={back}>Назад</Button>
+      <Button onClick={back} style={{ display: 'flex', margin: '0 auto' }}>Назад</Button>
       {chooseBook.map((data, index) => (
         <div key={index} className={style.currentBook}>
           <div className={style.image__block}>

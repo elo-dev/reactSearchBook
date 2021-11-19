@@ -30,9 +30,11 @@ const App = () => {
   }
 
   const sortedBooks = (value) => {
-    dispatch(setLoadingAction(true))
-    dispatch(requestSortedBooks(ROOT_API + inputValue + MAX_RESULT + 30 + ORDER_BY + value + API_KEY))
-    navigate('/')
+    if(books.length){
+      dispatch(setLoadingAction(true))
+      dispatch(requestSortedBooks(ROOT_API + inputValue + MAX_RESULT + 30 + ORDER_BY + value + API_KEY))
+      navigate('/')
+    }
   }
 
   const filtredBooks = useMemo(

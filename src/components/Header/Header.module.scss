@@ -1,0 +1,43 @@
+header {
+  .title {
+    text-align: center;
+  }
+  .search__book {
+    display: flex;
+    justify-content: center;
+    .input__search{
+      max-width: 50%;
+    }
+    button{
+      margin-left: 10px;
+    }
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    .category__book {
+      margin-right: 20px;
+      span {
+        margin-right: 5px;
+        color: gray;
+      }
+    }
+    .sort__books {
+      span {
+        margin-right: 5px;
+        color: gray;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .container{
+    display: block !important;
+    text-align: center;
+    .category__book{
+      margin-bottom: 10px;
+    }
+  }
+}

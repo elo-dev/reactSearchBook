@@ -31,3 +31,16 @@
         }
     }
 }
+
+@media screen and (max-width: 862px) {
+    .currentBook{
+        display: block;
+        .image__block{
+            width: 100%;
+            text-align: center;
+        }
+        .description{
+            margin: 0 auto;
+        }
+    }
+}

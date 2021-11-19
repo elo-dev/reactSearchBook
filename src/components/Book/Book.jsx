@@ -12,7 +12,7 @@ export const Book = ({ id, volumeInfo }) => {
       <div key={id} className={style.book}>
         <Card
           hoverable
-          style={{ width: 220, height: 500 }}
+          className={style.book__card}
           cover={<img alt={title} src={noPicture} />}
         >
           <span className={style.category}>{categories}</span>
@@ -30,7 +30,7 @@ export const Book = ({ id, volumeInfo }) => {
         <NavLink to={`/book/${id}`}>
         <Card
           hoverable
-          style={{ width: 220, height: 500 }}
+          className={style.book__card}
           cover={<img alt={title} src={smallThumbnail} />}
         >
           <span className={style.category}>

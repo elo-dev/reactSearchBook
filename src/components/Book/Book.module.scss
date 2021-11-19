@@ -1,8 +1,9 @@
 .book {
-  margin: 0 10px 10px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-bottom: 20px;
+  .book__card {
+    width: 220px;
+    height: 500px;
+  }
   .category {
     color: gray;
     text-decoration: underline;
@@ -16,6 +17,17 @@
     white-space: nowrap;
   }
   .author {
+    display: block;
     color: grey;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 476px) {
+  .book__card{
+    width: 330px !important;
+    height: 100% !important;
   }
 }
