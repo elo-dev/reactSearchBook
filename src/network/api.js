@@ -12,10 +12,3 @@ export const getResponse = (search) => {
   })
   return res
 }
-
-export const getSortedBooks = async (value) => {
-  const res = await axios.get(value).then((res) => {
-    return res.data
-  })
-  return res
-}

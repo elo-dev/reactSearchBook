@@ -2,8 +2,9 @@ import React from 'react'
 import { Button, Col, Row } from 'antd'
 import { Book } from '../Book/Book'
 import { Loader } from '../../assets/loader/Loader'
+import { withError } from '../../hoc-helper/withError'
 
-export const Books = ({ books, countBooks, filtredBooks, loading, loadMore }) => {
+const Books = ({ books, countBooks, filtredBooks, loading, loadMore }) => {
   return (
     <>
       {!loading ? (
@@ -14,13 +15,13 @@ export const Books = ({ books, countBooks, filtredBooks, loading, loadMore }) =>
                 <Row gutter={16}>
                 {filtredBooks.length
                   ? filtredBooks.map(({ id, volumeInfo }, index) => (
-                    <Col flex={3}>
-                      <Book key={index} id={id} volumeInfo={volumeInfo} />
+                    <Col key={index} flex={3}>
+                      <Book id={id} volumeInfo={volumeInfo} />
                     </Col>
                     ))
                   : books.map(({ id, volumeInfo }, index) => (
-                    <Col flex={3}>
-                      <Book key={index} id={id} volumeInfo={volumeInfo} />
+                    <Col key={index} flex={3}>
+                      <Book id={id} volumeInfo={volumeInfo} />
                     </Col>
                     ))}
                 </Row>
@@ -52,3 +53,5 @@ export const Books = ({ books, countBooks, filtredBooks, loading, loadMore }) =>
     </>
   )
 }
+
+export default withError(Books)

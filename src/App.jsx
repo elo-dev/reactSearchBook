@@ -4,9 +4,9 @@ import './App.scss'
 import { API_KEY, MAX_RESULT, ORDER_BY, ROOT_API, START_INDEX } from './network/api'
 import { Header } from './components/Header/Header'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { Books } from './components/Books/Books'
-import { CurrentBook } from './components/CurrentBook/CurrentBook'
-import { requestBooks, setLoadingAction, requestLoadMore, requestSortedBooks } from './store/booksReducer'
+import Books from './components/Books/Books'
+import CurrentBook from './components/CurrentBook/CurrentBook'
+import { requestBooks, requestLoadMore, requestSortedBooks } from './store/booksReducer'
 import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
@@ -31,7 +31,6 @@ const App = () => {
 
   const sortedBooks = (value) => {
     if(books.length){
-      dispatch(setLoadingAction(true))
       dispatch(requestSortedBooks(ROOT_API + inputValue + MAX_RESULT + 30 + ORDER_BY + value + API_KEY))
       navigate('/')
     }
@@ -55,10 +54,10 @@ const App = () => {
   return (
     <div className="App">
       <Header setInputValue={setInputValue} 
-              setCategory={setCategory}
-              handleSubmit={handleSubmit}
-              sortedBooks={sortedBooks}
-              inputValue={inputValue} />
+                setCategory={setCategory}
+                handleSubmit={handleSubmit}
+                sortedBooks={sortedBooks}
+                inputValue={inputValue} />
         <Routes>
           <Route path='/' element={<Books
                 loadMore={loadMore}

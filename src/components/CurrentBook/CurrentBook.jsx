@@ -2,8 +2,9 @@ import React from 'react'
 import { Button } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import style from './CurrentBook.module.scss'
+import { withError } from '../../hoc-helper/withError'
 
-export const CurrentBook = ({ books }) => {
+const CurrentBook = ({ books }) => {
   const { id } = useParams()
 
   const chooseBook = books && books.filter((el) => el.id === id)
@@ -35,3 +36,5 @@ export const CurrentBook = ({ books }) => {
     </>
   )
 }
+
+export default withError(CurrentBook)
