@@ -1,10 +1,19 @@
 import React from 'react'
 import { Button, Col, Row } from 'antd'
-import { Book } from '../Book/Book'
+import Book from '../Book/Book'
 import { Loader } from '../../assets/loader/Loader'
 import { withError } from '../../hoc-helper/withError'
+import { IBook } from '../../types/books'
 
-const Books = ({ books, countBooks, filtredBooks, loading, loadMore }) => {
+interface BooksProps {
+  books: IBook[]
+  countBooks: number
+  filtredBooks: IBook[]
+  loading: boolean
+  loadMore: () => void
+}
+
+const Books: React.FC<BooksProps> = ({ books, countBooks, filtredBooks, loading, loadMore }) => {
   return (
     <>
       {!loading ? (
@@ -23,7 +32,8 @@ const Books = ({ books, countBooks, filtredBooks, loading, loadMore }) => {
                     <Col key={index} flex={3}>
                       <Book id={id} volumeInfo={volumeInfo} />
                     </Col>
-                    ))}
+                    ))
+                }
                 </Row>
               <div className="loadMoreBtns">
                 {books.length % 30 === 0 ? (

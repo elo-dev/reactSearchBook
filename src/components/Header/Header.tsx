@@ -4,7 +4,15 @@ import { CategoryBook } from '../CategoryBook/CategoryBook'
 import { SortBooks } from '../SortBooks/SortBooks'
 import style from './Header.module.scss'
 
-export const Header = ({ handleSubmit, setInputValue, setCategory, sortedBooks, inputValue }) => {
+interface HeaderProps {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  setInputValue: (value: string) => void
+  setCategory: (value: string) => void
+  sortedBooks: (value: string) => void
+  inputValue: string
+}
+
+export const Header: React.FC<HeaderProps> = ({ handleSubmit, setInputValue, setCategory, sortedBooks, inputValue }) => {
   return (
     <header>
       <h1 className={style.title}>Поиск книги</h1>
@@ -15,7 +23,7 @@ export const Header = ({ handleSubmit, setInputValue, setCategory, sortedBooks, 
             title="Первый символ не может быть пробелом"
             placeholder="Введите название книги"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
             className={style.input__search}
           />
           <Button

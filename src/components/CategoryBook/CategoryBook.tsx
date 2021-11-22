@@ -1,12 +1,16 @@
 import React from 'react'
 import { Select } from 'antd'
 
-export const CategoryBook = ({ setCategory }) => {
+interface CategoryBookProps {
+  setCategory: (value: string) => void
+}
+
+export const CategoryBook: React.FC<CategoryBookProps> = ({ setCategory }) => {
   const { Option } = Select
 
   return (
     <>
-      <Select defaultValue="Все" onChange={e => setCategory(e)} style={{ width: 200 }}>
+      <Select defaultValue="Все" onChange={setCategory} style={{ width: 200 }}>
         <Option value="Все">Все</Option>
         <Option value="Art">Арт</Option>
         <Option value="Biography">Биография</Option>

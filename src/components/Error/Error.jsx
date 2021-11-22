@@ -1,9 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 import style from './Error.module.scss'
 
 export const Error = () => {
-    const error_message = useSelector(state => state.booksReducer.error_message)
+    const { error_message } = useTypedSelector(state => state.booksReducer)
 
     return (
         <div className={style.error__container}>
